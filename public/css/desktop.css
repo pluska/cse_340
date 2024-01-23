@@ -1,0 +1,88 @@
+@media screen and (min-width: 1000px) {
+
+  p, a, li {
+    font-size: 1.5rem;
+  }
+
+  body {
+    background-image: url("../images/site/checkerboard.jpg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #wrapper {
+    border: var(--primary-color) solid 5px;
+    border-radius: 8px;
+    width: 90%;
+    margin: 1rem 0;
+    background-color: #fff;
+  }
+
+  #top-header {
+    grid-template-columns: 400px 1fr;
+  }
+
+  .siteName a {
+    font-size: 3rem;
+  }
+
+  #tools {
+    justify-content: end;
+  }
+
+  main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  #welcome {
+    grid-column: 1 / 3;
+    grid-row: 1 / 2;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .car-info {
+    top: 150px;
+    left: 20px;
+  }
+
+  .button-image {
+    width: 200px;
+  }
+
+  .reviews {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+  }
+
+  .reviews ul li {
+    padding: 1rem;
+  }
+
+  .upgrades {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    grid-template-rows: 100px 1fr;
+  }
+
+  .card {
+    height: 300px;
+    padding: 1rem;
+  }
+
+  .card img {
+    width: 100px;
+    margin: 0.5rem;
+  }
+
+}

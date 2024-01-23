@@ -1,6 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,500&family=Roboto:wght@300&display=swap');
+
+
 /******* Change Box Model ***************/
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+
+/* variables */
+
+:root {
+  --primary-color: #D24545;
+  --secondary-color: #E6BAA3;
+  --header-font: 'Nunito Sans', sans-serif;
+  --main-font: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--main-font);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--header-font);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  color: var(--secondary-color);
+}
+
+/* header */
+
+#top-header {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  padding: 1rem;
+}
+
+.siteName {
+  grid-column: 1 / 2;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+#tools {
+  grid-column: 2 / 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+nav ul {
+  background-color: var(--primary-color);
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  padding: 0.5rem;
+}
+
+nav li {
+  color: #fff;
+  padding: 0.5rem;
+}
+
+footer {
+  background-color: var(--primary-color);
+  color: #fff;
+  text-align: center;
+  padding: 0.5rem;
+  margin-top: 2rem;
+}
+
+footer p {
+  margin: 0;
 }
