@@ -7,7 +7,9 @@
   <p><%= message %></p>
   <div class="error-image">
     <% if (title === 404) { %>
-    <img src="images/errors/error404.webp" alt="error">
+    <img src="/images/errors/error404.webp" alt="error">
+    <% } else { %>
+    <img src="/images/errors/error500.jpg" alt="error">
     <% } %>
   </div>
   </div>

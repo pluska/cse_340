@@ -12,6 +12,7 @@ const app = express()
 const static = require("./routes/static")
 const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
+const errorRoute = require("./routes/errorRoute")
 const utilities = require("./utilities/")
 
 /* ***********************
@@ -27,6 +28,10 @@ app.set("layout", "./layouts/layout") // not at views root
  *************************/
 
 app.get("/", baseController.buildHome)
+
+// Error route
+
+app.use("/error", errorRoute)
 
 // Inventory routes
 app.use("/inv", inventoryRoute)
@@ -58,20 +63,6 @@ app.use(async (err, req, res, next) => {
  *************************/
 const port = process.env.PORT
 const host = process.env.HOST
-
-/* ***********************
-* Express Error Handler
-* Place after all other middleware
-*************************/
-app.use(async (err, req, res, next) => {
-  let nav = await utilities.getNav()
-  console.error(`Error at: "${req.originalUrl}": ${err.message}`)
-  res.render("errors/error", {
-    title: err.status || 'Server Error',
-    message: err.message,
-    nav
-  })
-})
 
 /* ***********************
  * Log statement to confirm server operation

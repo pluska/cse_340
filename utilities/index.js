@@ -57,4 +57,41 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the detail view HTML
+* ************************************ */
+Util.buildDetail = async function(data){
+  let vehicle = data[0]
+  vehicle.inv_price = new Intl.NumberFormat('en-US').format(vehicle.inv_price)
+  vehicle.inv_miles = new Intl.NumberFormat('en-US').format(vehicle.inv_miles)
+
+  let view = ''
+
+  view += '<div class="main-information">'
+  view += '<div class="car-photo">'
+  view += '<img src="' + vehicle.inv_image + '" alt="image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors">'
+  view += '</div>'
+  view += '<div class="car-information">'
+  view += '<div class="prominent-information">'
+  view += '<p><span>Make:</span> ' + vehicle.inv_make + '</p>'
+  view += '<p><span>Model:</span> ' + vehicle.inv_model + '</p>'
+  view += '<p><span>Year:</span> ' + vehicle.inv_year + '</p>'
+  view += '<p><span>Price:</span> $' + vehicle.inv_price + '</p>'
+  view += '</div>'
+  view += '<div class="other-information">'
+  view += '<p><span>Mileage:</span> ' + vehicle.inv_miles + '</p>'
+  view += '<p><span>Color:</span> ' + vehicle.inv_color + '</p>'
+  view += '</div>'
+  view += '</div>'
+  view += '<div class="car-description">'
+  view += '<h2>Description:</h2>'
+  view += '<p>'
+  view += vehicle.inv_description
+  view += '</p>'
+  view += '</div>'
+  view += '</div>'
+
+  return view
+}
+
 module.exports = Util

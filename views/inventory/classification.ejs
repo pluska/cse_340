@@ -1,10 +1,12 @@
-<% if (title) { %>
-  <h1><%= title %></h1>
-  <% } else {
-    res.redirect('/')
-  } %>
-
-
-  <%# messages() %>
-
-  <%- grid %>
+<div class="gallery">
+  <% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+    
+    
+    <%# messages() %>
+    
+    <%- grid %>
+</div>

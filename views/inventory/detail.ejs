@@ -1,0 +1,9 @@
+<% if (title) { %>
+  <div class="car-details-container">
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+  <%- vehicle %>
+  </div>
