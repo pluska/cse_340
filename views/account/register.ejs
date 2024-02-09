@@ -1,0 +1,41 @@
+<% if (title) { %>
+  <div class="account-container">
+
+    <h1><%= title %></h1>
+    <% } else {
+    res.redirect('/')
+  } %>
+
+  <p><%- message %></p>
+
+    <form action="/account/register" method="post">
+      <label for="account_firstname">First Name:</label>
+      <input type="text" name="account_firstname" id="account_firstname" required>
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" name="account_lastname" id="account_lastname" required>
+      <label for="account_email">Email Address:</label>
+      <input type="text" name="account_email" id="account_email" required placeholder="Enter a valid email address">
+      <label for="password">Password:</label>
+      <div class="password-container">
+        <input type="password" name="account_password" id="password" minlength="12" required>
+        <span id="togglePassword" onclick="togglePasswordVisibility()">👁️</span>
+      </div>
+      <input type="submit" value="Register">
+    </form>
+  </div>
+
+  
+<script>
+  function togglePasswordVisibility() {
+    var passwordInput = document.getElementById('password');
+    var toggleIcon = document.getElementById('togglePassword');
+
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      toggleIcon.textContent = '👁️';
+    } else {
+      passwordInput.type = 'password';
+      toggleIcon.textContent = '👁️';
+    }
+  }
+</script>
