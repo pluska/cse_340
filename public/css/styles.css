@@ -275,3 +275,11 @@ footer p {
   transform: translateY(-50%);
   cursor: pointer;
 }
+
+input:required:invalid, input:focus:invalid {
+  border-color: red;
+}
+
+input:required:valid {
+  border-color: green;
+}
