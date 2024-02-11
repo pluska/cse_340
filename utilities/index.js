@@ -24,6 +24,25 @@ Util.getNav = async function (req, res, next) {
   return list
 }
 
+/* ********************************
+ * Constructs Select Category for Add Inventory
+ * ******************************** */
+
+Util.buildAddInvSelect = async function (classification_id) {
+  let data = await invModel.getClassifications()
+  let select = '<select name="classification_id">'
+  console.log(classification_id)
+  data.rows.forEach((row) => {
+    if (row.classification_id == classification_id) {
+      select += "<option value='" + row.classification_id + "' selected>"
+    } else {
+      select += "<option value='" + row.classification_id + "'>" + row.classification_name + "</option>"
+    }
+  })
+  select += "</select>"
+  return select
+}
+
 /* **************************************
 * Build the classification view HTML
 * ************************************ */

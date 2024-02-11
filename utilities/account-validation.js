@@ -79,7 +79,6 @@ validate.registationRules = () => {
 
 validate.checkLoginData = async (req, res, next) => {
   const { account_email } = req.body
-  console.log(account_email)
   let errors = []
   errors = validationResult(req)
   if (!errors.isEmpty()) {
