@@ -22,7 +22,7 @@ validate.loginRules = () => {
       }),
 
     // password is required and matches
-    body("password")
+    body("account_password")
       .trim()
       .isLength({ min: 12 })
       .withMessage("Email or Password is incorrect. Please try again.")

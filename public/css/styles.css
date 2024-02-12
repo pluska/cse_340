@@ -260,6 +260,10 @@ footer p {
   color: #fff;
 }
 
+.management {
+  grid-row: 1/2;
+}
+
 .password-container {
   width: 100%;
   position: relative;
@@ -373,4 +377,57 @@ textarea {
 
 #messages li:hover {
   background-color: transparent;
+}
+
+.classification-list {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+  width: 100%;
+  padding: 3.5rem;
+  border: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 0.5rem;
+}
+
+.btn {
+  background-color: transparent;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #fff;
+  color: var(--secondary-color);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  color: var(--secondary-color);
 }

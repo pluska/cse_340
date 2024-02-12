@@ -6,6 +6,10 @@ const validate = require('../utilities/account-validation')
 const accountController = require("../controllers/accountController")
 
 // Route to build inventory by classification view
+router.get(
+  '/',
+  utilities.checkLogin,
+  utilities.handleErrors(accountController.buildAccount));
 router.get("/login", utilities.handleErrors(accountController.buildLogin));
 router.get("/register", utilities.handleErrors(accountController.buildRegister));
 router.post(
@@ -18,10 +22,6 @@ router.post(
   "/login",
   validate.loginRules(),
   validate.checkLoginData,
-  utilities.handleErrors(
-  (req, res) => {
-    res.status(200).send('login process')
-  }
-  ))
+  utilities.handleErrors(accountController.accountLogin))
 
 module.exports = router;

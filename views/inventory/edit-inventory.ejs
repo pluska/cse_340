@@ -1,0 +1,45 @@
+<div class="management">
+<% if(title) { %>
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+  <% if(errors) { %>
+  <ul class="errors">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+  <% } %>
+  <%- messages() %>
+
+  <form action="/inv/update" method="post" enctype="multipart / form-data" id="edit-inventory-form" validate>
+    <label for="inv_make">Make</label>
+    <input type="text" name="inv_make" id="inv_make" value="<%- locals.inv_make %>" required>
+    <label for="inv_model">Model</label>
+    <input type="text" name="inv_model" id="inv_model" value="<%- locals.inv_model %>" required>
+    <label for="inv_year">Year</label>
+    <input type="number" name="inv_year" id="inv_year" pattern="[0-9]{4}" step="1" min="1900" max="2100" value="<%- locals.inv_year %>" required>
+    <label for="inv_description">Description</label>
+    <textarea name="inv_description" id="inv_description" maxlength="500" required>
+      <%- locals.inv_description %>
+    </textarea>
+    <label for="inv_img">Image</label>
+    <input type="file" name="inv_img" id="inv_image" accept="image/*">
+    <label for="inv_thumbnail">Thumbnail</label>
+    <input type="file" name="inv_thumbnail" id="inv_thumbnail" accept="image/*">
+    <label for="inv_price">Price</label>
+    <input type="number" name="inv_price" id="inv_price" min="0" step="0.01" value="<%- locals.inv_price %>" required>
+    <label for="inv_miles">Miles</label>
+    <input type="number" name="inv_miles" id="inv_miles" min="0" step="1" value="<%- locals.inv_miles %>" required>
+    <label for="inv_color">Color</label>
+    <input type="text" name="inv_color" id="inv_color" pattern="[A-Za-z]{1,}" value="<%- locals.inv_color %>" required>
+    <label for="classification_id">Classification</label>
+      <%- classificationSelect %>
+      <input type="hidden" name="inv_id"
+      <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+      <% } %>>
+    <input type="submit" id="update-btn" value="Update Vehicle" disabled>
+  </form>
+  <script src="../../js/inv-update.js"></script>
+</div>

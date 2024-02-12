@@ -22,4 +22,16 @@ router.post(
   validate.checkInvData,
   utilities.handleErrors(invController.addInv));
 
+  router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+
+  /* Edit Routes */
+
+  router.get("/edit/:invId", utilities.handleErrors(invController.buildEditInv));
+  router.post("/update/",
+    validate.inventoryRules(),
+    validate.checkUpdateData,
+    utilities.handleErrors(invController.updateInv));
+  router.get("delete/:invId", utilities.handleErrors(invController.buildDeleteInv));
+  router.post("delete/:invId", utilities.handleErrors(invController.deleteInv));
+
 module.exports = router;
