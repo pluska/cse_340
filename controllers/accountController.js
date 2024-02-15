@@ -118,6 +118,7 @@ async function accountLogin(req, res) {
 
 async function buildAccount(req, res, next) {
   let nav = await utilities.getNav()
+  res.locals.accountData = await accountModel.getAccountById(res.locals.accountData.account_id)
   const title = "Welcome back " + res.locals.accountData.account_firstname
   res.render("account/account", {
     title,
