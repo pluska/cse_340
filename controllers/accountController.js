@@ -152,6 +152,7 @@ async function updateAccount(req, res, next) {
   const { account_id, account_firstname, account_lastname, account_email } = req.body
   const result = await accountModel.updateAccount(account_id, account_firstname, account_lastname, account_email)
   if (result) {
+    res.locals.accountData = await accountModel.getAccountById(account_id)
     req.flash("notice", "Account information updated.")
     res.redirect("/account/")
   } else {
