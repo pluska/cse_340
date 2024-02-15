@@ -8,16 +8,18 @@ const invController = require("../controllers/invController")
 // Route to build inventory by classification view
 router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/detail/:invId", invController.buildDetail);
-router.get("/", utilities.handleErrors(invController.buildInvManagement));
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+router.get("/", utilities.checkJWTAutorization, utilities.handleErrors(invController.buildInvManagement));
+router.get("/add-classification", utilities.checkJWTAutorization, utilities.handleErrors(invController.buildAddClassification));
 router.post(
   "/add-classification",
+  utilities.checkJWTAutorization,
   validate.classificationRules(),
   validate.checkClassData,
   utilities.handleErrors(invController.addClassification));
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInv));
+router.get("/add-inventory", utilities.checkJWTAutorization, utilities.handleErrors(invController.buildAddInv));
 router.post(
   "/add-inventory",
+  utilities.checkJWTAutorization,
   validate.inventoryRules(),
   validate.checkInvData,
   utilities.handleErrors(invController.addInv));
@@ -26,12 +28,15 @@ router.post(
 
   /* Edit Routes */
 
-  router.get("/edit/:invId", utilities.handleErrors(invController.buildEditInv));
+  router.get("/edit/:invId", utilities.checkJWTAutorization, utilities.handleErrors(invController.buildEditInv));
   router.post("/update/",
     validate.inventoryRules(),
     validate.checkUpdateData,
     utilities.handleErrors(invController.updateInv));
-  router.get("delete/:invId", utilities.handleErrors(invController.buildDeleteInv));
-  router.post("delete/:invId", utilities.handleErrors(invController.deleteInv));
+
+  /* Delete Routes */
+
+  router.get("/delete/:invId", utilities.checkJWTAutorization, utilities.handleErrors(invController.buildDeleteInv));
+  router.post("/delete/", utilities.checkJWTAutorization, utilities.handleErrors(invController.deleteInv));
 
 module.exports = router;

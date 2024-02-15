@@ -53,11 +53,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+
+
 /* ***********************
  * Routes
  *************************/
 
-app.get("/", baseController.buildHome)
+app.get("/", utilities.handleErrors( baseController.buildHome))
 
 // Error route
 

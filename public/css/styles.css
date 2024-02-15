@@ -249,6 +249,7 @@ footer p {
 
 .account-container, .management {
   min-width: 500px;
+  max-width: 800px;
   grid-column: 1 / 3;
   grid-row: 1 / 3;
   align-self: center;
@@ -365,6 +366,17 @@ textarea {
   background-color: var(--primary-color);
 }
 
+
+
+.account-links a {
+  color: #fff;
+  font-size: 1.0rem;
+}
+
+.account-links a:hover {
+  color: var(--primary-color);
+}
+
 #messages ul {
   list-style-type: none;
   padding: 0;
@@ -430,4 +442,10 @@ th, td {
 .btn-secondary:hover {
   background-color: #fff;
   color: var(--secondary-color);
+}
+
+.management form input[type=submit]:disabled {
+  cursor: not-allowed;
+  background-color: #ccc;
+  color: #333;
 }

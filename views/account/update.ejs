@@ -1,0 +1,40 @@
+<div class="management">
+  <% if(title) { %>
+    <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+  <%- messages() %>
+  <% if(errors) { %>
+    <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+    </ul>
+  <% } %>
+
+  <div class="form-container">
+    <h2>Account Update</h2>
+    <form action="/account/update/" method="post" id="edit-account-form">
+      <label for="account_firstname">First Name:</label>
+      <input type="text" name="account_firstname" id="account_firstname" required value="<%- locals.account_firstname || (locals.accountData && locals.accountData.account_firstname)  %>">
+      <label for="account_lastname">Last Name:</label>
+      <input type="text" name="account_lastname" id="account_lastname" required value="<%- locals.accountData.account_lastname %>">
+      <label for="account_email">Email Address:</label>
+      <input type="email" name="account_email" id="account_email" required value="<%- locals.accountData.account_email %>">
+      <input type="hidden" name="account_id" id="account_id" value="<%- locals.accountData.account_id %>">
+      <input type="submit" value="Update Account" id="updateAccount" disabled>
+    </form>
+  </div>
+  <div class="form-container">
+    <h2>Change Password</h2>
+    <form action="/account/update/password" method="post" id="change-password-form">
+      <span>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character (The change will change your current password)</span>
+      <input type="password" name="account_password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[?!.*\s).{12,}$" required>
+      <input type="hidden" name="account_id" id="account_id" value="<%- locals.accountData.account_id %>">
+      <input type="submit" value="Change Password" id="changePassword" disabled>
+    </form>
+  </div>
+<script src="../../js/account-update.js"></script>
+</div>

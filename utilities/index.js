@@ -162,4 +162,31 @@ Util.checkJWTToken = (req, res, next) => {
     }
   }
 
+  /* ****************************************
+ *  Check Admin or Employee JWT Autorization
+ * ************************************ */
+
+  Util.checkJWTAutorization = (req, res, next) => {
+      const token = req.cookies.jwt;
+      if (!token) {
+        req.flash('notice', 'Please log in');
+        return res.status(401).redirect('/account/login');
+      }
+      jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+        if (err) {
+          req.flash('notice', 'Please log in');
+          return res.status(403).redirect('/account/login');
+        }
+        req.user = user; // Almacena la información del usuario en req
+        const account_type = req.user.account_type;
+        if (account_type !== 'Admin' && account_type !== 'Employee') {
+          req.flash('notice', 'Unauthorized access');
+          return res.status(403).redirect('/account/login');
+        } else {
+          next();
+        }
+      });
+  }
+
+
 module.exports = Util
