@@ -88,27 +88,27 @@ Util.buildDetail = async function(data){
   let view = ''
 
   view += '<div class="main-information">'
-  view += '<div class="car-photo">'
-  view += '<img src="' + vehicle.inv_image + '" alt="image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors">'
-  view += '</div>'
-  view += '<div class="car-information">'
-  view += '<div class="prominent-information">'
-  view += '<p><span>Make:</span> ' + vehicle.inv_make + '</p>'
-  view += '<p><span>Model:</span> ' + vehicle.inv_model + '</p>'
-  view += '<p><span>Year:</span> ' + vehicle.inv_year + '</p>'
-  view += '<p><span>Price:</span> $' + vehicle.inv_price + '</p>'
-  view += '</div>'
-  view += '<div class="other-information">'
-  view += '<p><span>Mileage:</span> ' + vehicle.inv_miles + '</p>'
-  view += '<p><span>Color:</span> ' + vehicle.inv_color + '</p>'
-  view += '</div>'
+    view += '<div class="car-photo">'
+    view += '<img src="' + vehicle.inv_image + '" alt="image of ' + vehicle.inv_make + ' ' + vehicle.inv_model + ' on CSE Motors">'
+    view += '</div>'
+    view += '<div class="car-information">'
+      view += '<div class="prominent-information">'
+      view += '<p><span>Make:</span> ' + vehicle.inv_make + '</p>'
+      view += '<p><span>Model:</span> ' + vehicle.inv_model + '</p>'
+      view += '<p><span>Year:</span> ' + vehicle.inv_year + '</p>'
+      view += '<p><span>Price:</span> $' + vehicle.inv_price + '</p>'
+      view += '</div>'
+      view += '<div class="other-information">'
+      view += '<p><span>Mileage:</span> ' + vehicle.inv_miles + '</p>'
+      view += '<p><span>Color:</span> ' + vehicle.inv_color + '</p>'
+      view += '</div>'
+    view += '</div>'
   view += '</div>'
   view += '<div class="car-description">'
   view += '<h2>Description:</h2>'
   view += '<p>'
   view += vehicle.inv_description
   view += '</p>'
-  view += '</div>'
   view += '</div>'
 
   return view
@@ -187,6 +187,60 @@ Util.checkJWTToken = (req, res, next) => {
         }
       });
   }
+
+/* *******************************
+* Build Sells Grid
+* ******************************* */
+
+Util.buildSellsTable = async function(data, vehicles, buyers) {
+  let table = '<thead>'
+  table += '<tr><th>Vehicle</th><th>Buyer</th><th></th></tr>'
+  table += '</thead>'
+  table += '<tbody>'
+  if (data.length > 0) {
+    for (let i = 0; i < data.length; i++) {
+      table += '<tr><td>' + vehicles[i][0].inv_make + ' ' + vehicles[i][0].inv_model + '</td>'
+      table += '<td>' + buyers[i].account_firstname + ' ' + buyers[i].account_lastname + '</td>'
+      table += '<td><a class="btn btn-secondary" href="/sells/edit/' + data[i].sells_buyers_id + '"> Modify </a></td>'
+      table += '<td><a class="btn btn-secondary" href="/sells/detail/' + data[i].sells_buyers_id + '"> View </a></td>'
+      table += '<td><a class="btn btn-primary" href="/sells/delete/' + data[i].sells_buyers_id + '"> Delete </a></td></tr>'
+    }
+    table += '</tbody>'
+    return table
+  }
+}
+
+/* *******************************
+* Build Edit Sell Select Vehicle
+* ******************************* */
+
+Util.buildEditSellSelectVehicle = async function(data, sell) {
+  let select = ''
+  for (let i = 0; i < data.length; i++) {
+    if (sell.inv_id === data[i].inv_id) {
+      select += '<option value="' + data[i].inv_id + '" selected>' + data[i].inv_make + ' ' + data[i].inv_model + '</option>'
+    } else {
+      select += '<option value="' + data[i].inv_id + '">' + data[i].inv_make + ' ' + data[i].inv_model + '</option>'
+    }
+  }
+  return select
+}
+
+/* *******************************
+* Build Edit Sell Select Buyer
+* ******************************* */
+
+Util.buildEditSellSelectBuyer = async function(data, sell) {
+  let select = ''
+  for (let i = 0; i < data.length; i++) {
+    if (sell.account_id === data[i].account_id) {
+      select += '<option value="' + data[i].account_id + '" selected>' + data[i].account_firstname + ' ' + data[i].account_lastname + '</option>'
+    } else {
+      select += '<option value="' + data[i].account_id + '">' + data[i].account_firstname + ' ' + data[i].account_lastname + '</option>'
+    }
+  }
+  return select
+}
 
 
 module.exports = Util

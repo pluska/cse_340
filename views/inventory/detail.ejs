@@ -6,4 +6,15 @@
   } %>
 
   <%- vehicle %>
+
+  <% if(locals.loggedin) { %>
+    <div class="car-details-buttons">
+      <form action="/sells/buy" method="post">
+        <input type="hidden" name="inv_id" value="<%= inv_id %>">
+        <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>">
+        <input type="submit" value="Buy Car" class="btn btn-primary">
+      </form>
+    </div>
+  <% } %>
+
   </div>

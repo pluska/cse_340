@@ -8,6 +8,15 @@ async function getClassifications(){
 }
 
 /* ***************************
+ *  Get all inventory items
+ * ************************** */
+
+async function getInventory(){
+  return await pool.query("SELECT * FROM public.inventory")
+}
+
+
+/* ***************************
  *  Get all inventory items and classification_name by classification_id
  * ************************** */
 async function getInventoryByClassificationId(classification_id) {
@@ -109,4 +118,4 @@ async function deleteInventory(inv_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryById, addClassification, checkExistingName, checkExistingClassificationId, addInventory, updateInventory, deleteInventory};
+module.exports = {getClassifications, getInventory, getInventoryByClassificationId, getInventoryById, addClassification, checkExistingName, checkExistingClassificationId, addInventory, updateInventory, deleteInventory};

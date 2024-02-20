@@ -1,0 +1,18 @@
+<% if (title) { %>
+  <div class="management">
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+  <div class="sells-details">
+    <p><span>Price:</span> $<%= vehicle.inv_price %></p>
+    <p><span>Year:</span> <%= vehicle.inv_year %>
+    <p><span>Miles:</span> <%= vehicle.inv_miles %></p>
+    <p><span>Color:</span> <%= vehicle.inv_color %></p>
+  <% if(locals.accountData !== "Client") { %>
+      <p><span>Buyer:</span> <%= account.account_firstname %> <%= account.account_lastname %></p>
+      <p><span>Email:</span> <%= account.account_email %></p>
+      <% } %>
+    </div>
+  </div>

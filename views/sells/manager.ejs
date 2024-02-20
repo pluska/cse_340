@@ -1,0 +1,11 @@
+<div class="management">
+  <% if(title) { %>
+    <h1>
+      <%= title %>
+    </h1>
+  <% } else { res.redirect('/') } %>
+  <%- messages() %>
+</div>
+<table class="table-sells">
+  <%- table %>
+</table>

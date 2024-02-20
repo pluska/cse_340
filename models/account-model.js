@@ -35,6 +35,18 @@ async function checkPassword(account_email, account_password){
   }
 }
 
+/* **********************
+ *   Get all accounts
+ * ********************* */
+async function getAccounts(){
+  try {
+    const sql = "SELECT * FROM account"
+    return await pool.query(sql)
+  } catch (error) {
+    return error.message
+  }
+}
+
 /* ****************************
 * Return account data using id
 * *************************** */
@@ -90,4 +102,4 @@ async function updatePassword(account_id, account_password){
   }
 }
 
-module.exports = { registerAccount, checkExistingEmail, checkPassword, getAccountById, getAccountByEmail, updateAccount, updatePassword }
+module.exports = { registerAccount, checkExistingEmail, checkPassword, getAccounts, getAccountById, getAccountByEmail, updateAccount, updatePassword }

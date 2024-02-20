@@ -166,8 +166,17 @@ footer p {
   margin: auto;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px auto 200px 50px;
   grid-gap: 1rem;
+}
+
+.car-details-buttons {
+  grid-column: 1 / 2;
+  grid-row: 4 / 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
 }
 
 .car-details-container h1 {
@@ -187,7 +196,7 @@ footer p {
   grid-row: 2 / 3;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: auto 1fr 200px;
+  grid-template-rows: auto 1fr;
   padding: 1rem;
 }
 
@@ -397,6 +406,15 @@ textarea {
   width: 100%;
   padding: 3.5rem;
   border: none;
+}
+
+.sells-details p span {
+  font-weight: bold;
+}
+
+.table-sells {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
 }
 
 table {

@@ -1,0 +1,32 @@
+<% if (title) { %>
+  <div class="management">
+  <h1><%= title %></h1>
+  <% } else {
+    res.redirect('/')
+  } %>
+
+  <% if(errors) { %>
+  <ul class="errors">
+    <% errors.array().forEach(error => { %>
+    <li><%= error.msg %></li>
+  <% }) %>
+  </ul>
+  <% } %>
+  <%- messages() %>
+
+  <form action="/sells/update" method="post" id="edit-sell-form">
+    <label for="account_id">Select a buyer:</label>
+    <select name="account_id" id="account_id">
+      <%- accounts %>
+    </select>
+    <label for="inv_id">Select a vehicle:</label>
+    <select name="inv_id" id="inv_id">
+      <%- vehicles %>
+    </select>
+    <input type="hidden" name="sell_id" value="<%= sell_id %>">
+    <input type="submit" value="Update Sell" id="update-btn" disabled>
+  </form>
+
+  <script src="../../js/sell-update.js"></script>
+
+  </div>
